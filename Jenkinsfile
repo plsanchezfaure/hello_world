@@ -63,6 +63,7 @@ pipeline {
             sh "jx step helm release"
 
             // promote through all 'Auto' promotion Environments
+            sh 'ssh-keyscan -p 7999 globaldevtools.bbva.com >> ~/.ssh/known_hosts'
             sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
           }
         }
